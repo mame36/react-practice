@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ButtonComponent from './ButtonComponent.js';
+import TableComponent from "./TableComponent";
 
 
 class App extends Component {
@@ -45,7 +46,7 @@ class App extends Component {
       } catch (e) {
           alert("入力した正計算式は正しくありません。");
           this.setState({
-              temp : 0,
+              temp : "",
               count : 0
           })
           return;
@@ -53,58 +54,14 @@ class App extends Component {
 
   }
   render() {
-      const temp_style = {
-      height : "150px",
-      width : "420px",
-      verticalAlign: "top",
-      wordBreak : "break-all"
-    }
-    const count_style = {
-      height : "50px",
-      width : "420px",
-      verticalAlign: "bottom",
-      wordBreak : "break-all",
-      fontSize : "50px"
-    }
     return (
-        <table>
-          <tr>
-            <td colSpan={4} style={temp_style}>{this.state.temp}</td>
-          </tr>
-          <tr>
-            <td colSpan={4} style={count_style}>{this.state.count}</td>
-          </tr>
-          <tr>
-              <td><ButtonComponent value={" ( "} setTemp={this.setTemp}/></td>
-              <td><ButtonComponent value={" ) "} setTemp={this.setTemp}/></td>
-              <td><ButtonComponent value={" % "} setTemp={this.setTemp}/></td>
-              <td><button onClick={this.setClean}>CE</button></td>
-          </tr>
-          <tr>
-              <td><ButtonComponent value={"7"} setTemp={this.setTemp}/></td>
-              <td><ButtonComponent value={"8"} setTemp={this.setTemp}/></td>
-              <td><ButtonComponent value={"9"} setTemp={this.setTemp}/></td>
-              <td><ButtonComponent value={" / "} setTemp={this.setTemp}/></td>
-          </tr>
-          <tr>
-              <td><ButtonComponent value={"4"} setTemp={this.setTemp}/></td>
-              <td><ButtonComponent value={"5"} setTemp={this.setTemp}/></td>
-              <td><ButtonComponent value={"6"} setTemp={this.setTemp}/></td>
-              <td><ButtonComponent value={" * "} setTemp={this.setTemp}/></td>
-          </tr>
-          <tr>
-              <td><ButtonComponent value={"1"} setTemp={this.setTemp}/></td>
-              <td><ButtonComponent value={"2"} setTemp={this.setTemp}/></td>
-              <td><ButtonComponent value={"3"} setTemp={this.setTemp}/></td>
-              <td><ButtonComponent value={" - "} setTemp={this.setTemp}/></td>
-          </tr>
-          <tr>
-              <td><ButtonComponent value={"0"} setTemp={this.setTemp}/></td>
-              <td><ButtonComponent value={"."} setTemp={this.setTemp}/></td>
-              <td><button onClick={this.setCount}>=</button></td>
-              <td><ButtonComponent value={" + "} setTemp={this.setTemp}/></td>
-          </tr>
-        </table>
+        <TableComponent
+            value={this.state.value}
+            temp={this.state.temp}
+            count={this.state.count}
+            setTemp={this.setTemp}
+            setClean={this.setClean}
+            setCount={this.setCount}/>
     )
   }
 }
